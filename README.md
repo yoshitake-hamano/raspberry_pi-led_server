@@ -1,6 +1,3 @@
-# raspberrypi_led_server
-Ruby WEBrick led server.
-
 # 概要
 
 Ruby WEBrickを使用してLEDチカチカをTCP/IPから制御します。
