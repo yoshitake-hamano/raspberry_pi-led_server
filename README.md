@@ -27,5 +27,16 @@ $ sudo apt-get install ruby git
 
 ````.bash
 $ git clone git@github.com:yoshitake-hamano/raspberrypi_led_server.git
-$  ./raspberrypi_led_server/led_server.rb
+$ cd raspberrypi_led_server
+$ ./led_server.rb
+````
+
+# LED制御
+
+Raspberry PiのIPアドレスを[Rasp Addr]とすると以下のようにすることでLEDをON/OFFすることが可能です。
+HTTPプロトコルのGETを使用しているだけなので、ブラウザからアクセスするだけで制御出来ます。
+
+````.bash
+$ wget http://[Rasp Addr]/on
+$ wget http://[Rasp Addr]/off
 ````
