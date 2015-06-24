@@ -1,4 +1,4 @@
-# raspberry_pi-led_server
+# raspberrypi_led_server
 Ruby WEBrick led server.
 
 # 概要
