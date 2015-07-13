@@ -23,9 +23,9 @@ $ sudo apt-get install ruby git
 # 実行
 
 ````.bash
-$ git clone git@github.com:yoshitake-hamano/raspberrypi_led_server.git
-$ cd raspberrypi_led_server
-$ ./led_server.rb
+$ git clone git@github.com:yoshitake-hamano/raspberrypi_ruby_webio.git
+$ cd raspberrypi_ruby_webio
+$ ./raspberrypi_ruby_webio
 ````
 
 # LED制御
@@ -34,6 +34,6 @@ Raspberry PiのIPアドレスを[Rasp Addr]とすると以下のようにする�
 HTTPプロトコルのGETを使用しているだけなので、ブラウザからアクセスするだけで制御出来ます。
 
 ````.bash
-$ wget http://[Rasp Addr]/on
-$ wget http://[Rasp Addr]/off
+$ wget http://[Rasp Addr]:8000/on
+$ wget http://[Rasp Addr]:8000/off
 ````
