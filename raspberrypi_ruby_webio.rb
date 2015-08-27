@@ -5,7 +5,7 @@
 
 require 'webrick'
 
-class RaspberrypiRubyWebio
+class LedDriver
   GPIO_INDEX            = 4
   GPIO_ROOT             = "/sys/class/gpio"
   GPIO_EXPORT           = "#{GPIO_ROOT}/export"
@@ -37,7 +37,7 @@ class RaspberrypiRubyWebio
   end
 end
 
-webio = RaspberrypiRubyWebio.new
+webio = LedDriver.new
 
 server = WEBrick::HTTPServer.new(:Port =>8000)
 server.mount_proc('/on') do |req, res|
