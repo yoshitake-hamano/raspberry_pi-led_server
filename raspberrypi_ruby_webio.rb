@@ -3,9 +3,10 @@
 # File: raspberrypi_ruby_webio.rb - last edit
 # yoshitake 07-Jan-2015
 
+require 'json'
 require 'webrick'
 
-class LedDriver
+class InfraredDriver
   GPIO_INDEX            = 4
   GPIO_ROOT             = "/sys/class/gpio"
   GPIO_EXPORT           = "#{GPIO_ROOT}/export"
@@ -24,28 +25,28 @@ class LedDriver
     end
   end
 
-  def on
-    open(GPIO_TARGET_VALUE, "w") do |io|
-      io.print("1")
+  def infrared_light(req, res)
+    json = JSON.parse(req.body)
+    io   = open(GPIO_TARGET_VALUE, "w")
+    json["data"].each_with_index do |data, i|
+      if ((i % 2) == 0)
+        io.print("1")
+      else
+        io.print("0")
+      end
+      io.flush
+      sleep_time = data / 2_000_000.0
+      sleep(sleep_time)
     end
-  end
-
-  def off
-    open(GPIO_TARGET_VALUE, "w") do |io|
-      io.print("0")
-    end
+    puts
   end
 end
 
-webio = LedDriver.new
+webio = InfraredDriver.new
 
 server = WEBrick::HTTPServer.new(:Port =>8000)
-server.mount_proc('/on') do |req, res|
-  webio.on
-end
-
-server.mount_proc('/off') do |req, res|
-  webio.off
+server.mount_proc('/infrared_light') do |req, res|
+  webio.infrared_light(req, res)
 end
 
 trap('INT') { server.shutdown }
